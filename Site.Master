@@ -1,0 +1,283 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="CMS.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+       <meta charset="utf-8">
+ <title>Sidebar Menu with sub-menu | CodingNepal</title>
+    <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <style>
+                .btn {
+            background-color: #17a2b8;
+            color: black;
+            width: 280px;
+            text-align: center;
+            font-size: 22px;
+            padding: 14px;
+            font-weight: bold;
+            border: white;
+         }
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+*{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+}
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+}
+.sidebar {
+  position: fixed;
+  left: -250px;
+  width: 300px;
+  height: 100%;
+  background: #042331;
+  transition: all .5s ease;
+}
+.sidebar header {
+  font-size: 22px;
+  color: white;
+  line-height: 70px;
+  text-align: center;
+  background: #063146;
+  user-select: none;
+}
+.sidebar ul a{
+  display: block;
+  height: 100%;
+  width: 100%;
+  line-height: 65px;
+  font-size: 20px;
+  color: white;
+  padding-left: 40px;
+  box-sizing: border-box;
+  border-bottom: 1px solid black;
+  border-top: 1px solid rgba(255,255,255,.1);
+  transition: .4s;
+}
+ul li:hover a{
+  padding-left: 50px;
+}
+.sidebar ul a i{
+  margin-right: 16px;
+}
+#check{
+  display: none;
+}
+label #btn,label #cancel{
+  position: absolute;
+  background: #042331;
+  border-radius: 3px;
+  cursor: pointer;
+}
+label #btn{
+  left: 40px;
+  top: 25px;
+  font-size: 35px;
+  color: white;
+  padding: 6px 12px;
+  transition: all .5s;
+}
+label #cancel{
+  z-index: 1111;
+  left: -195px;
+  top: 17px;
+  font-size: 30px;
+  color: #0a5275;
+  padding: 4px 9px;
+  transition: all .5s ease;
+}
+#check:checked ~ .sidebar{
+  left: 0;
+}
+#check:checked ~ label #btn{
+  left: 250px;
+  opacity: 0;
+  pointer-events: none;
+}
+#check:checked ~ label #cancel{
+  left: 195px;
+}
+#check:checked ~ section{
+  margin-left: 250px;
+}
+section{
+  background: url(bg.jpeg) no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  transition: all .5s;
+}
+bg-info, .bg-info>a {
+    color: #fff!important;
+}
+
+.bg-info {
+    background-color: #17a2b8!important;
+}
+.small-box {
+    border-radius: 0.25rem;
+    box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+    display: block;
+    margin-bottom: 20px;
+    position: relative;
+}
+.small-box>.inner {
+    padding: 10px;
+
+.col-lg-3 {
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
+}
+.col-6 {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+    </style>
+
+   
+</head>
+ <body >
+
+    <input type="checkbox" id="check">
+    <label for="check">
+      <i class="fas fa-bars" id="btn"></i>
+      <i class="fas fa-times" id="cancel" style="display: none";></i>
+    </label>
+    <div class="sidebar">
+    <header>My App</header>
+  <ul>
+<li onclick="Masters()"> <a href="#"><i class="fas fa-qrcode" ></i>Masters</a></li>
+<li onclick="Transactions()"><a href="#"><i class="fas fa-link"></i>Transactions</a></li>
+<li onclick="Reports()"><a href="#"><i class="fas fa-stream"></i>Reports</a></li>
+<li onclick="Events()"><a href="#"><i class="fas fa-calendar-week"></i>Events</a></li>
+<li onclick="About()"><a href="#"><i class="far fa-question-circle"></i>About</a></li>
+<li><a href="#"><i class="fas fa-sliders-h"></i>Services</a></li>
+<li><a href="#"><i class="far fa-envelope"></i>Contact</a></li>
+</ul>
+</div>
+
+
+
+<div id="first" style="display: none;float: left;/* padding-right: 0%; */margin-top: 6%;width: 93%;">
+
+
+<div class="fas" id="firstdiv" style="/* float: right; *//* width:100px; */padding-left: 25%;width: 30%;" aria-hidden="true">
+ <label style="width: 50%;position: absolute;margin-top: -2%;padding-left: 4%;">Company Details</label>
+<button class="btn">Company Settings</button> </br></br></br>
+<button class ="btn">Company users</button> </br></br></br>
+<button class ="btn">Company Bank</button> </br></br></br>
+<button class ="btn">Office Expense</button></br></br></br>
+<button class ="btn">Payments type</button> </br></br></br>
+<button class ="btn">Whom</button></br></br></br>
+<button class ="btn">Installment/term</button></br></br></br>
+ </div>
+
+<div class="fas" id="seconddiv" style="margin:0 auto;/* width:100px; *//* margin-top: -30%; */position: absolute;/* padding-right: 3%; */width: 30%;" aria-hidden="true">
+<label style="width: 50%;position: absolute;margin-top: -6%;padding-left: 15%;">Person Details</label>
+<button class="btn">Client</button> </br></br></br>
+<button class ="btn">Supplier</button> </br></br></br>
+<button class ="btn">Contract</button> </br></br></br> 
+</div>
+
+<div class="fas" id="thirddiv" style="width: 30%;padding-left: 22%;margin-top: 0%;position: absolute;" aria-hidden="true">
+<label style="width: 50%;position: absolute;margin-top: -4%;padding-left: -2%;padding-left: 5%;">Material and labour Details</label>
+<button class="btn">Material Deatils</button> </br></br></br>
+<button class ="btn">Job Work details</button> </br></br></br>
+</div>
+</div>
+
+<div id="second" style="display:none;width:100%;float: left;padding-left: 30%;margin-top: 7%;">
+
+    <label class="fas" style="width: 50%;position: absolute;margin-top: -3%;margin-left: -7%;">Transaction Menus</label>
+ <div class="fas" id="Secondfirstdiv" style="float:left;width:100px;padding-right: 12%;" aria-hidden="true">
+<%--      <label style="width: 50%;position: absolute;margin-top: -1%">Company Details</label>--%>
+<div class="col-lg-3 col-6" style="width:150%"><div class="small-box bg-info"><div class="inner"><p>New transaxtions</p></div></div></div>
+<div class="col-lg-3 col-6" style="width:150%"><div class="small-box bg-info"><div class="inner"><p>Stock Analysis</p></div></div></div>
+ <div class="col-lg-3 col-6" style="width:150%"><div class="small-box bg-info"><div class="inner"><p>Installment/term</p></div></div></div>
+      </div>
+    <div class="fas" id="Secondseconddiv" style="margin:0 auto;width:100px;" aria-hidden="true">
+<%--      <label style="width: 50%;position: absolute;margin-top: -1%">Person Details</label>--%>
+<div class="col-lg-3 col-6" style="width:150%"><div class="small-box bg-info"><div class="inner"><p>Stock transfer</p></div></div></div>
+<div class="col-lg-3 col-6" style="width:150%"><div class="small-box bg-info"><div class="inner"><p>Estimted Qty</p></div></div></div>
+
+           </div>
+
+             </div>
+
+
+
+    <script>
+        function loadSettings() {
+            URL = "CMSMaterial.aspx";
+            POPwidth = (screen.availWidth * 71) / 100
+            POPheight = (screen.availHeight * 86) / 100
+
+            var sucess = window.open(URL, 'Generate', 'top=0,left=0,height=' + POPheight + ',width=' + POPwidth + ',titlebar=1,scrollbars=1,toolbar=0,status=1,resizable=0,menubar=0');
+        }
+
+
+
+        function Masters() {
+            document.getElementById('first').style.display = 'block';
+            document.getElementById('second').style.display = 'none';
+           // document.getElementById('third').style.display = 'none';
+           // document.getElementById('fourth').style.display = 'none';
+          //  document.getElementById('fifth').style.display = 'none';
+        }
+        function Transactions() {
+            document.getElementById('first').style.display = 'none';
+            document.getElementById('second').style.display = 'block';
+           // document.getElementById('third').style.display = 'none';
+          //  document.getElementById('fourth').style.display = 'none';
+          //  document.getElementById('fifth').style.display = 'none';
+        }
+        function Reports() {
+            document.getElementById('first').style.display = 'none';
+            document.getElementById('second').style.display = 'none';
+            document.getElementById('third').style.display = 'block';
+            document.getElementById('fourth').style.display = 'none';
+            document.getElementById('fifth').style.display = 'none';
+        }
+        function Events() {
+            document.getElementById('first').style.display = 'none';
+            document.getElementById('second').style.display = 'none';
+            document.getElementById('third').style.display = 'none';
+            document.getElementById('fourth').style.display = 'block';
+            document.getElementById('fifth').style.display = 'none';
+        }
+        function About() {
+            document.getElementById('first').style.display = 'none';
+            document.getElementById('second').style.display = 'none';
+            document.getElementById('third').style.display = 'none';
+            document.getElementById('fourth').style.display = 'none';
+            document.getElementById('fifth').style.display = 'block';
+        }
+    </script>
+
+     <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+  </body>
+</html>
